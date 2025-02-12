@@ -1,0 +1,164 @@
+
+.section-share{
+    &.section-specialty {
+        background: #f5f5f5;
+    }
+    // &.section-medical-facility {
+    //     background: #f5f5f5;
+    // }
+    &.section-outstanding-doctor {
+        background: #f5f5f5;
+    }
+    &.section-about {
+        height: 500px !important;
+        border-top: 2px solid #e2e2e2;
+        border-bottom: 2px solid #e2e2e2;
+    }
+    .section-body {
+        .section-customize {
+            flex-direction: column; 
+            align-items: center;
+            text-align: center;
+
+            .bg-image {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover; 
+                background-color: #eee;
+                height: 180px;
+                width: 95%;
+                &.section-specialty {
+                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                }
+                
+                &.section-medical-facility {
+                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                }
+                &.section-outstanding-doctor {
+                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                    width: 120px !important;
+                    height: 120px !important;
+                    border-radius: 50%;
+                }
+                &.section-HandBook {
+                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                }
+            }
+        }
+        
+    }
+}
+
+.section-share {
+    height: 330px;
+    .section-container {
+        margin: 0px 50px;
+        display: flex;
+        flex-direction: column;
+    
+        .section-header {
+            height: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items:flex-end; 
+            justify-content: space-between;
+        }
+        
+        .title-section {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .btn-section {
+            padding: 8px 15px;
+            border: none;
+            outline: none;
+            background: #ebebeb;
+            border: 2px solid #d1cfcf;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-right: 15px;
+            &:hover {
+                background: rgb(248, 178, 47);
+                color: white;
+                border: 2px solid rgb(251, 171, 21);
+            }
+        }
+    }
+    
+    .slick-prev {
+        left: -10px !important;
+        z-index: 1000 !important;
+        height: 48px !important;
+        width: 44px !important;
+        background: #fff !important;
+        border: 2px solid #d7d7d7 !important;
+        &:hover { 
+            background: #edecec !important;
+        }
+    }
+    
+    .slick-prev:before, .slick-next:before{
+        font-family: FontAwesome !important;
+        color: #d7d7d7 !important;
+    }
+    .slick-next {
+        right: -10px !important;
+        z-index: 1000 !important;
+        height: 48px !important;
+        width: 44px !important;
+        background: #fff !important;
+        border: 2px solid #d7d7d7 !important;
+        &:hover { 
+            background: #edecec  !important;
+        }
+    }
+}
+
+.section-outstanding-doctor {
+    .outer-bg {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .section-customize{
+        padding: 5px;
+        .custumize-border {
+            padding: 20px;
+            border: 2px solid #d7d7d7 !important;
+        }
+    }
+}
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+    a {
+        text-decoration: unset;
+    }
+}
+
+.section-about {
+    padding: 0 100px;
+        .section-about-header {
+            padding: 20px 10px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .section-about-content {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            .content-left {
+                width: 60%;
+            }
+            .content-right {
+                width: 40%;
+                p {
+                    font-size: 20px;
+                    text-align: justify;
+                    font-style: italic;
+                    padding-top: 15px;
+                }
+            }
+        }
+}

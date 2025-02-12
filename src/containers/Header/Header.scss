@@ -20,4 +20,9 @@
             font-size: $base-size + 1px;
         }
     }
+    .welcome {
+        .welcome-span {
+            margin-right: 15px;
+        }
+    }
 }

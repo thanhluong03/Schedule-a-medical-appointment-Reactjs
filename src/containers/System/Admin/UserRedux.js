@@ -13,7 +13,16 @@ class ProductManage extends Component {
 
     render() {
         return (
-            <div className="text-center" >Manage products</div>
+            <div className="user-redux-container" >
+                <div className="title">
+                    ThanhLuongdepzai
+                </div>
+                <div className="user-redux-body">
+                    <div className="container">
+                        <div className="row"></div>
+                    </div>
+                </div>
+            </div>
         )
     }
 
