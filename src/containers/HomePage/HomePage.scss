@@ -28,14 +28,14 @@
                 height: 180px;
                 width: 95%;
                 &.section-specialty {
-                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                    // background-image: url('../../assets/specialty/xuongkhop.jpeg');
                 }
                 
                 &.section-medical-facility {
-                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                    //background-image: url('../../assets/specialty/xuongkhop.jpeg');
                 }
                 &.section-outstanding-doctor {
-                    background-image: url('../../assets/specialty/xuongkhop.jpeg');
+                   // background-image: url('../../assets/specialty/xuongkhop.jpeg');
                     width: 120px !important;
                     height: 120px !important;
                     border-radius: 50%;
@@ -48,7 +48,9 @@
         
     }
 }
-
+.slick-disabled {
+    display: none !important;
+}
 .section-share {
     height: 330px;
     .section-container {
@@ -123,6 +125,7 @@
     }
     .section-customize{
         padding: 5px;
+        cursor: pointer;
         .custumize-border {
             padding: 20px;
             border: 2px solid #d7d7d7 !important;
