@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
-
+import { USER_ROLE } from '../../utils/constant';
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
@@ -27,35 +27,33 @@ class Login extends Component {
         console.log(event.target.value)
     }
     handleLogin = async () => {
-        this.setState({
-            errMessage: ''
-        })
-        try{
+        this.setState({ errMessage: '' });
+        try {
             let data = await handleLoginApi(this.state.username, this.state.password);
-            if(data && data.errCode !==0){
-                this.setState({
-                    errMessage: data.message
-                })
+            if (data && data.errCode !== 0) {
+                this.setState({ errMessage: data.message });
             }
-            if(data && data.errCode === 0)
-            {
-                this.props.userLoginSuccess(data.user)
-                console.log('Login sucsessfull')
-            }
-        } catch(e){ 
-            if(e.response)
-            {
-                if(e.response.data)
-                {
-                    this.setState({
-                        errMessage: e.response.data.message
-                    })
+            if (data && data.errCode === 0) {
+                this.props.userLoginSuccess(data.user);
+                console.log('Login successful');
+    
+                // Lưu user vào localStorage
+                localStorage.setItem('userInfo', JSON.stringify(data.user));
+    
+                // Điều hướng theo vai trò
+                if (data.user.roleId === USER_ROLE.ADMIN) {
+                    this.props.navigate('/system/user-redux');  // Đã đổi thành user-redux
+                } else if (data.user.roleId === USER_ROLE.DOCTOR) {
+                    this.props.navigate('/doctor/manage-schedule');
                 }
             }
-            
+        } catch (e) {
+            if (e.response && e.response.data) {
+                this.setState({ errMessage: e.response.data.message });
+            }
         }
+    };
     
-    }
 
     handleKeyDown = (event) => {
         if(event.key === 'Enter' || event.keyCode === 13) {

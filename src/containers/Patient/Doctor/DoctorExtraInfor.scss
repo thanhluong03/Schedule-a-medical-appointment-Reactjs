@@ -1,56 +1,104 @@
 .doctor-extra-infor-container {
-    padding-left: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    //margin-left: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
     .content-up {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #fff;
+        margin-left: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
         .text-address {
-            text-transform: uppercase;
-            color: #333;
+            //text-transform: uppercase;
+            color: #4dabf7;
+            font-weight: bold;
+            font-size: 16px;
         }
-        .name-clinic {
-            padding: 5px 0;
+        .name-clinic, .detail-address {
+            padding: 3px 0;
             font-weight: 600;
-            color: #333;
-        }
-        .detail-address {
-            font-weight: 600;
+            font-size: 13px;
             color: #333;
         }
     }
+
     .content-down {
+        margin-left: 20px;
         .short-infor {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            //align-items: center;
+            justify-content: space-between;
+
             .detail {
                 cursor: pointer;
-                color: rgb(38, 160, 231);
+                color: #4dabf7;
+                font-weight: 600;
+                transition: color 0.3s;
+                &:hover {
+                    color: #1e87f0;
+                }
             }
             .currency {
-                margin: 0 5px;
+                margin: 0 10px;
+                font-weight: bold;
+                color: #ff6b6b;
             }
         }
         .title-price {
             margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
         }
         .detail-infor {
             border: 1px solid #ddd;
-            padding: 5px;
-            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
             .price {
+                display: flex;
+                justify-content: space-between;
                 padding-bottom: 5px;
+                font-weight: 600;
                 .right {
-                    float: right;
+                    color: #ff6b6b;
                 }
             }
-            .note {}
+            .note {
+                font-size: 14px;
+                color: #555;
+            }
         }
         .payment {
             border: 1px solid #ddd;
-            padding: 5px;
-            background-color: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fff;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .hide-price {
             margin-top: 10px;
+            text-align: center;
             span {
                 cursor: pointer;
-                color: rgb(38, 160,231);
+                color: #4dabf7;
+                font-weight: bold;
+                transition: color 0.3s;
+                &:hover {
+                    color: #1e87f0;
+                }
             }
         }
     }

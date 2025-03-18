@@ -1,20 +1,121 @@
-.manage-specialty-container {
-    padding: 0 15px;
+.manage-clinic-container {
+    background-color: #fff;
+    padding: 20px;
+   
+    //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
     .ms-title {
         text-align: center;
-        margin: 10px 0;
-        text-transform: uppercase;
-        font-size: 17px;
+        font-size: 30px;
         font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #0a9fc5;
     }
-    .add-new-specialty {
-        .btn-save-specialty {
-            border: none;
-            background: orange;
-            padding: 8px 5px;
-            min-width: 75px;
-            border-radius: 3px;
-            margin: 15px 0;
+
+    .add-new-clinic {
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            .form-control{
+                border: 1px solid rgb(109, 109, 109);
+                height: 35px;
+            }
+            
         }
+
+        label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        /* Ensure image and name are in one row */
+        .col-image-name {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .image-upload {
+                width: 30%; /* Adjust size of the image */
+                height: auto;
+                max-width: 120px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px dashed #ddd;
+                border-radius: 8px;
+                padding: 10px;
+            }
+
+            .name-input {
+                width: 65%; /* Name takes most of the row */
+            }
+        }
+
+        .form-control, .form-control-file {
+            padding: 12px 15px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        .form-control:focus, .form-control-file:focus {
+            border-color: #3498db; /* Soft blue for focus */
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+
+        .btn-save-clinic {
+            margin-top: 30px;
+            padding: 14px 30px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #00daae, #81ffc8);
+            color: #626262;
+            border: none;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            float: right;
+
+            &:hover {
+                background: linear-gradient(135deg, #e67e22, #d35400); /* Darker orange on hover */
+                transform: translateY(-3px); /* Lift the button on hover */
+            }
+
+            &:active {
+                background: #d35400; /* Darkest orange on click */
+                transform: translateY(1px); /* Slight dip on click */
+            }
+
+            &:disabled {
+                background: #dcdde1;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    /* Markdown editor custom styling */
+    .md-editor-wrapper {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .md-editor {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        color: #333;
     }
 }

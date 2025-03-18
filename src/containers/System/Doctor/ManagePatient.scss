@@ -1,0 +1,88 @@
+.manage-patient-container {
+    padding: 30px 40px;
+
+    .m-p-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #0a9fc5;
+    }
+
+    .manage-patient-body {
+        background: #eeeeee;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        color: #555;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .table-manage-patient {
+        margin-top: 20px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+             td {
+                padding: 12px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .tr-title {
+                background: #63aeff;
+                color: #3a3a3a;
+                font-weight: bold;
+                &:hover{
+                    background: #0258b3;
+                    color: #ffffff;
+                }
+            }
+            .form-body{
+                padding: 12px;
+                    text-align: center;
+                    border-bottom: 1px solid #ddd;
+                    &:hover {
+                        background: #e7e7e7;
+                    }
+            }
+        }
+    }
+
+    .mp-btn-confirm {
+        background: #28a745;
+        color: #fff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        font-weight: bold;
+
+        &:hover {
+            background: #218838;
+        }
+    }
+}

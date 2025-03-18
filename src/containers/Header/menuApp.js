@@ -1,12 +1,12 @@
 export const adminMenu = [
     { //quan ly nguoi dung
-        name: 'menu.admin.manage-user', 
+        name: 'menu.admin.manage-total-doctor', 
         menus: [
+            // {
+            //     name: 'menu.admin.crud', link: '/system/user-manage'
+            // },
             {
-                name: 'menu.admin.crud', link: '/system/user-manage'
-            },
-            {
-                name: 'menu.admin.crud-redux', link: '/system/user-redux'
+                name: 'menu.admin.manage-user', link: '/system/user-redux'
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/manage-doctor'
@@ -41,23 +41,26 @@ export const adminMenu = [
             },
         ]
     },
-    { //quan ly cam nang
-        name: 'menu.admin.handbook', 
-        menus: [
-            {
-                name: 'menu.admin.manage-handbook', link: '/system/manage-handbook'
-            },
-        ]
-    },
+    // { //quan ly cam nang
+    //     name: 'menu.admin.handbook', 
+    //     menus: [
+    //         {
+    //             name: 'menu.admin.manage-handbook', link: '/system/manage-handbook'
+    //         },
+    //     ]
+    // },
 ];
 
 
 export const doctorMenu = [
     {
-        name: 'menu.admin.manage-user',
+        name: 'menu.admin.manage-user-doctor',
         menus: [
             {
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
+            },
+            {
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient'
             }
         ]
     }

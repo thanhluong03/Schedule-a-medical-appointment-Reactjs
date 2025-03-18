@@ -13,55 +13,50 @@ class DoctorSchedule extends Component {
         super(props);
         this.state = {
             allDays: [],
-            allAvalableTime: [],
+            allAvailableTime: [],
             isOpenModalBooking: false,
             dataScheduleTimeModal: {}
         };
     }
 
     async componentDidMount() {
-        let { language } = this.props;
+        let { language, doctorIdFromParent } = this.props;
         let allDays = this.getArrDays(language);
         this.setState({ allDays });
 
-        if (this.props.doctorIdFromParent) {
-            let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
-            let filteredTimes = this.filterAvailableTimes(res?.data, allDays[0].value);
-            this.setState({ allAvalableTime: filteredTimes });
+        if (doctorIdFromParent) {
+            let res = await getScheduleDoctorByDate(doctorIdFromParent, allDays[0].value);
+            if (res && res.errCode === 0) {
+                let filteredTimes = this.filterPastTimes(res.data, allDays[0].value);
+                this.setState({ allAvailableTime: filteredTimes });
+            }
         }
     }
 
     async componentDidUpdate(prevProps) {
-        if (this.props.language !== prevProps.language) {
+        if (this.props.language !== prevProps.language || this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
             let allDays = this.getArrDays(this.props.language);
             this.setState({ allDays });
-        }
 
-        if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-            let allDays = this.getArrDays(this.props.language);
-            let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
-            let filteredTimes = this.filterAvailableTimes(res?.data, allDays[0].value);
-            this.setState({ allAvalableTime: filteredTimes });
+            if (this.props.doctorIdFromParent) {
+                let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
+                if (res && res.errCode === 0) {
+                    let filteredTimes = this.filterPastTimes(res.data, allDays[0].value);
+                    this.setState({ allAvailableTime: filteredTimes });
+                }
+            }
         }
     }
 
     getArrDays = (language) => {
         let allDays = [];
         for (let i = 0; i < 7; i++) {
-            let object = {};
-            let date = moment(new Date()).add(i, 'days');
+            let date = moment().add(i, 'days');
             let formattedDate = date.format('DD/MM');
-
-            if (language === LANGUAGES.VI) {
-                object.label = i === 0 ? `Hôm nay - ${formattedDate}` : 
-                    this.capitalizeFirstLetter(date.format('dddd - DD/MM'));
-            } else {
-                object.label = i === 0 ? `Today - ${formattedDate}` : 
-                    date.locale('en').format('dddd - DD/MM');
-            }
-
-            object.value = date.startOf('day').valueOf();
-            allDays.push(object);
+            let label = language === LANGUAGES.VI
+                ? (i === 0 ? `Hôm nay - ${formattedDate}` : this.capitalizeFirstLetter(date.format('dddd - DD/MM')))
+                : (i === 0 ? `Today - ${formattedDate}` : date.locale('en').format('dddd - DD/MM'));
+            allDays.push({ label, value: date.startOf('day').valueOf() });
         }
         return allDays;
     };
@@ -70,36 +65,30 @@ class DoctorSchedule extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    filterAvailableTimes = (times, selectedDate) => {
-        if (!times || times.length === 0) return [];
-
-        let currentDate = moment().startOf('day').valueOf();
-        let currentTime = moment().valueOf();
-
-        return times.filter(time => {
-            let timeStamp = moment(time.date).valueOf();
-            return selectedDate > currentDate || timeStamp > currentTime;
-        });
-    };
-
     handleOnChangeSelect = async (event) => {
-        if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
-            let doctorId = this.props.doctorIdFromParent;
-            let date = event.target.value;
-            let res = await getScheduleDoctorByDate(doctorId, date);
-
+        let { doctorIdFromParent } = this.props;
+        let date = event.target.value;
+        if (doctorIdFromParent) {
+            let res = await getScheduleDoctorByDate(doctorIdFromParent, date);
             if (res && res.errCode === 0) {
-                let filteredTimes = this.filterAvailableTimes(res.data, date);
-                this.setState({ allAvalableTime: filteredTimes });
+                let filteredTimes = this.filterPastTimes(res.data, date);
+                this.setState({ allAvailableTime: filteredTimes });
             }
         }
     };
 
-    handleClickScheduleTime = (time) => {
-        this.setState({
-            isOpenModalBooking: true,
-            dataScheduleTimeModal: time
+    filterPastTimes = (scheduleList, selectedDate) => {
+        let now = moment();
+        let isToday = moment(parseInt(selectedDate)).isSame(now, 'day');
+
+        return scheduleList.filter(item => {
+            let scheduleTime = moment(item.timeTypeData.valueVi, "HH:mm");
+            return !isToday || scheduleTime.isSameOrAfter(now, 'minute');
         });
+    };
+
+    handleClickScheduleTime = (time) => {
+        this.setState({ isOpenModalBooking: true, dataScheduleTimeModal: time });
     };
 
     closeBookingClose = () => {
@@ -107,7 +96,7 @@ class DoctorSchedule extends Component {
     };
 
     render() {
-        let { allDays, allAvalableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
+        let { allDays, allAvailableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
         let { language } = this.props;
 
         return (
@@ -116,36 +105,26 @@ class DoctorSchedule extends Component {
                     <div className="all-schedule">
                         <select onChange={this.handleOnChangeSelect}>
                             {allDays.map((item, index) => (
-                                <option value={item.value} key={index}>
-                                    {item.label}
-                                </option>
+                                <option value={item.value} key={index}>{item.label}</option>
                             ))}
                         </select>
                     </div>
                     <div className="all-available-time">
                         <div className="text-calendar">
-                            <i className="fas fa-calendar-alt">
-                                <span><FormattedMessage id="patient.detail-doctor.schedule" /></span>
-                            </i>
+                            <i className="fas fa-calendar-alt"><span><FormattedMessage id="patient.detail-doctor.schedule" /></span></i>
                         </div>
                         <div className="time-content">
-                            {allAvalableTime.length > 0 ? (
+                            {allAvailableTime.length > 0 ? (
                                 <>
                                     <div className="time-content-btns">
-                                        {allAvalableTime.map((item, index) => {
-                                            let timeDisplay = language === LANGUAGES.VI
-                                                ? item.timeTypeData.valueVi
-                                                : item.timeTypeData.valueEn;
-                                            return (
-                                                <button 
-                                                    key={index} 
-                                                    className={language === LANGUAGES.VI ? 'btn-vie' : 'btn-en'}
-                                                    onClick={() => this.handleClickScheduleTime(item)}
-                                                >
-                                                    {timeDisplay}
-                                                </button>
-                                            );
-                                        })}
+                                        {allAvailableTime.map((item, index) => (
+                                            <button 
+                                                key={index} 
+                                                className={language === LANGUAGES.VI ? 'btn-vie' : 'btn-en'}
+                                                onClick={() => this.handleClickScheduleTime(item)}>
+                                                {language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn}
+                                            </button>
+                                        ))}
                                     </div>
                                     <div className="book-free">
                                         <span>

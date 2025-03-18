@@ -1,32 +1,147 @@
 .manage-schedule-container {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 100%;
+    margin: 0 auto;
+    //box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  
     .m-s-title {
-        text-transform: uppercase;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        font-weight: 600;
-        font-size: 17px;
         text-align: center;
-    }
-
-    .pick-hour-container {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        
-        button {
-            padding: 5px 15px;
-            border: 1px solid grey;
-        }
-    }
-
-    .btn-schedule {
-        &.active {
-            background-color: orange;
-        }
-    }
-    .btn-save-schedule {
+        font-size: 30px;
+        font-weight: 600;
         margin-top: 20px;
+        margin-bottom: 20px;
+        color: #0a9fc5;
+    }
+  
+    .pick-hour-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 25px 0;
+  
+      button {
+        padding: 12px 25px;
+        font-size: 16px;
+        background-color: #43fff2;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+        &:hover {
+          background-color: #009187;
+          color: white;
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+  
+        &:active {
+          background-color: #2980b9;
+          transform: translateY(1px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  
+    .btn-schedule {
+      &.active {
+        background-color: #009187;
+        color: white;
+        border-color: #009187;
+      }
+    }
+  
+    .btn-save-schedule {
+        margin-top: 30px;
+        padding: 14px 30px;
+        font-size: 18px;
+        background: linear-gradient(135deg, #00daae, #81ffc8);
+        color: rgb(98, 98, 98);
+        border: none;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        float: right;  
+        
+        &:hover {
+            background: linear-gradient(135deg, #00b894, #39fca7);
+            color: rgb(98, 98, 98);
+            transform: translateY(-3px);
+   
+        }
+      }
+
+    .pick-date-container {
+      .date-box {
+        font-size: 14px;
+        height: 50px; 
+        border-radius: 5px;
+        border: 1px solid #bebebe;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/* Đảm bảo mỗi ô chiếm 1/2 chiều rộng container */
+  
+        &:hover {
+          border: 1px solid rgb(0, 137, 191);
+          box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+  
+        &:active {
+          background-color: #009187;
+          transform: translateY(1px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
     }
 }
+
+  
+  .loading-overlay {
+    position: absolute;
+    top: 70px; 
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    border-radius: 2px;
+    z-index: 999;
+    &::before {
+      content: "";
+      position: fixed;
+      top: 5px;
+      left: 0;
+      width: 100%;
+      margin-top: 70px;
+      height: 100%; 
+      background-color: rgba(255, 255, 255, 0.7); 
+      z-index: 998;
+    }
+  }
+  
+  .loading-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #35ff1f, #54ff91);
+    position: absolute;
+    left: -100%;
+    animation: smooth-loading 2s infinite linear;
+  }
+  
+  @keyframes smooth-loading {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  

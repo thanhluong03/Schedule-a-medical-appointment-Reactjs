@@ -1,0 +1,82 @@
+.section-outstanding-doctor {
+    background: #f5f5f5;
+    padding: 20px 0;
+
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        .title-section {
+            font-size: 20px;
+            font-weight: bold;
+           // text-transform: uppercase;
+            color: #333;
+        }
+    }
+
+    .section-body {
+        .section-customize {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            padding: 10px;
+            height: 260px;
+            border-radius: 10px;
+            background: #fbfbfb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .custumize-border {
+                border-radius: 10px;
+                overflow: hidden;
+                //padding: px;
+                padding-bottom: 30px;
+                text-align: center;
+                height: 240px;
+                border: 1px solid #dddddd;
+            }
+
+            .outer-bg {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 150px;
+                overflow: hidden;
+
+                .bg-image {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    background-position: center;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    object-fit: cover;  // Thêm dòng này để đảm bảo ảnh không bị biến dạng
+                }
+                &:hover .bg-image {
+                    transform: scale(1.05);
+                }
+                
+            }
+
+            .position {
+                text-align: center;
+                padding: 10px;
+                font-size: 14px;
+                font-weight: 550;
+                &:hover {
+                    color: #45c3d2;
+                }
+                
+            }
+        }
+    }
+}

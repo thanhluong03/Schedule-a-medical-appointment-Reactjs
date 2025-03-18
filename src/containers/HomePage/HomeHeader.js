@@ -12,6 +12,17 @@ class HomeHeader extends Component {
             this.props.history.push(`/home`)
         }
     }
+    handleViewListSpecialty = () => {
+        if(this.props.history) {
+            this.props.history.push(`/list-specialty`)
+        }
+    }
+
+    handleViewLogin = () => {
+        if(this.props.history) {
+            this.props.history.push(`/login`)
+        }
+    }
     render() {
     
         return (
@@ -19,7 +30,7 @@ class HomeHeader extends Component {
             <div className="home-header-container">
                 <div className="home-header-content">
                     <div className="left-content">
-                        <i className="fas fa-bars"></i>
+                        {/* <i className="fas fa-bars"></i> */}
                         <img className="header-logo" src= {logo} onClick={() => this.returnToHome()}/>
                     </div>
                     <div className="center-content">
@@ -41,11 +52,13 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                     <div className="right-content">
-                        <div className="support"><i className="fas fa-question-circle"></i>
-                        < FormattedMessage id="homeheader.support"/>
-                        </div>
-                        <div className="language-vi">VN</div>
-                        <div className="language-en">EN</div>
+                    <div className="right-content">
+                        {/* <div className="language-vi">VN</div>
+                        <div className="language-en">EN</div> */}
+                        <button className="login-btn"
+                         onClick={() => this.handleViewLogin()}>Login</button>
+                    </div>
+
                     </div>
                 </div>
             </div>
@@ -54,14 +67,15 @@ class HomeHeader extends Component {
                 <div className="content-up">
                     <div className="title1">< FormattedMessage id="banner.title1"/></div>
                     <div className="title2">< FormattedMessage id="banner.title2"/></div>
-                    <div className="search">
+                    {/* <div className="search">
                     <i className="fas fa-search"></i>
                     <input type="text" placeholder="Tìm chuyên khoa khám bệnh"/>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="content-down">
                     <div className="options">
-                        <div className="option-child">
+                        <div className="option-child" 
+                        onClick={() => this.handleViewListSpecialty()}>
                             <div className="icon-child"><i className="far fa-hospital"></i></div>
                             <div className="text-child">Khám chuyên khoa</div>
                         </div>

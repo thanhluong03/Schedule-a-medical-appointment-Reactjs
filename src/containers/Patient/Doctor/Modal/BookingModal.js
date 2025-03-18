@@ -12,6 +12,7 @@ import Select from 'react-select';
 import { postPatientBookAppointment } from "../../../../services/userService";
 import {toast} from "react-toastify";
 import moment from "moment";
+import LoadingOverlay from "react-loading-overlay";
 class BookingModal extends Component {
 
     constructor(props) {
@@ -27,6 +28,7 @@ class BookingModal extends Component {
             doctorId: '',
             genders: '',
             timeType: '',
+            isLoading: false 
         }
     }
 
@@ -116,6 +118,7 @@ async componentDidMount() {
         return ''
     }
     handleConfirmBooking = async () => {
+        this.setState({ isLoading: true }); 
         let date = new Date(this.state.birthday).getTime();
         let timeString = this.buildTimeBooking(this.props.dataTime);
         let doctorName = this.buildDoctorName(this.props.dataTime);
@@ -125,7 +128,8 @@ async componentDidMount() {
             email: this.state.email,
             address: this.state.address,
             reason: this.state.reason,
-            date: date,
+            date: this.props.dataTime.date,
+            birthday: date,
             selectedGender: this.state.selectedGender.value,
             doctorId: this.state.doctorId,
             timeType: this.state.timeType,
@@ -134,11 +138,14 @@ async componentDidMount() {
             doctorName: doctorName
         })
         if(res && res.errCode === 0 ) {
+            this.setState({ isLoading: false }); 
             toast.success('Booking a new appointment success')
             this.props.closeBookingClose();
         } else {
+            this.setState({ isLoading: false }); 
             toast.error('Booking a new appointment error!!!')
         }
+        
     }
     render() {
         let {isOpenModal, closeBookingClose, dataTime} = this.props;
@@ -152,6 +159,7 @@ async componentDidMount() {
             className={'booking-modal-container'}
             size= "lg"
             centered>
+                <LoadingOverlay active={this.state.isLoading} spinner text="Processing...">
                 <div className="booking-modal-content">
                     <div className="booking-modal-header">
                         <span className="left">
@@ -223,6 +231,8 @@ async componentDidMount() {
                         onClick={closeBookingClose}><FormattedMessage id ="patient.booking-modal.btnCancel"/></button>
                     </div>
                 </div>
+                
+                </LoadingOverlay>
             </Modal>
         );
     }

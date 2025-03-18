@@ -1,50 +1,222 @@
 .manage-doctor-container {
-    padding: 5px;
+  position: relative;
+  padding: 20px 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 100%;
+  // /margin: 0 40px;
+ // border: 1px solid #f0f0f0;
+  //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-    .manage-doctor-title {
-        text-align:  center;
-        margin: 15px 0;
-        font-size: 20px;
-        text-transform:  uppercase;
-        font-weight: 600;
-    }
-    .save-content-doctor {
-        margin-top: 20px;
-        margin-bottom:  30px;
-        border-radius:  3px;
-        outline: none;
-        border: none;
-        padding: 5px;
-        background: orange;
-        cursor: pointer;
-        &:hover {
-            opacity: 0.9;
-        }
-    }
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
 
-    .create-content-doctor {
-        margin-top: 20px;
-        margin-bottom: 30px;
-        border-radius: 3px;
-        outline: none;
-        border: none;
-        padding: 5px;
-        background: rgb(11, 93, 216);
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    border-radius: 2px;
+    z-index: 999; 
+  
+
+    &::before {
+      content: "";
+      position: fixed;
+      top: 5px;
+      left: 0;
+      width: 100%;
+      margin-top: 70px;
+      height: 100%; 
+      background-color: rgba(255, 255, 255, 0.7); 
+      z-index: 998;
+    }
+  }
+  
+  .loading-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #35ff1f, #54ff91);
+    position: absolute;
+    left: -100%;
+    animation: smooth-loading 2s infinite linear;
+  }
+  
+  @keyframes smooth-loading {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  
+
+  .manage-doctor-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #0a9fc5;
+  }
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 95px;
+    width: 100%;
+  }
+
+  .save-content-doctor,
+  .create-content-doctor {
+    margin-top: 30px;
+    padding: 14px 30px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #00daae, #81ffc8);
+    color: #626262;
+    border: none;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    //float: right;
+  }
+
+  .save-content-doctor {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+    color: #fff;
+    &:hover {
+      background: linear-gradient(135deg, #ba7300, #fedf61);
+      transform: scale(1.05);
+    }
+  }
+
+  .create-content-doctor {
+    background: linear-gradient(135deg, #00daae, #81ffc8);
+    color: rgb(98, 98, 98);
+    &:hover {
+      background: linear-gradient(135deg, #00b894, #39fca7);
+      transform: scale(1.05);
+    }
+  }
+
+  .more-infor {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 20px;
+    .content-left {
+      width: 33%;
+      padding: 1px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      .form {
+        border: 1px solid rgb(109, 109, 109);
+        font-size: 14px;
+        border-radius: 5px;
         cursor: pointer;
-        color: white;
-        &:hover {
-            opacity: 0.9;
-        }
+        transition: all 0.3s ease-in-out;
+      }
     }
-    .more-infor {
-        display: flex;
-        gap: 15px;
-        padding-bottom: 15px;
-        .content-left {
-            width: 35%;
+    .content-right {
+      width: 67%;
+      padding: 1px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      
+      .form-control {
+        font-size: 14px;
+        height: 36px; /* Giảm chiều cao của form */
+        border-radius: 5px;
+        border: 1px solid rgb(109, 109, 109);
+        transition: all 0.3s ease-in-out;
+        padding: 8px;
+      }
+
+      select {
+        font-size: 14px; /* Giảm font-size */
+        height: 36px; /* Giảm chiều cao */
+        line-height: 18px; /* Điều chỉnh line-height cho gọn */
+        padding: 8px; /* Điều chỉnh padding để làm nhỏ */
+        border-radius: 5px;
+        border: 1px solid rgb(109, 109, 109);
+        transition: all 0.3s ease-in-out;
+        background-color: #fff;
+        option {
+          font-size: 14px; /* Giảm font-size cho các option */
         }
-        .content-right {
-            width: 65%;
-        }
+      }
     }
+  }
+
+  .form-control {
+    width: 100%;
+    height: 36px; /* Giảm chiều cao */
+    padding: 8px;
+    font-size: 14px; /* Giảm font-size */
+    border: 1px solid rgb(109, 109, 109);
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    margin-bottom: 12px;
+
+    &:focus {
+      border-color: #00b894;
+      box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+    }
+  }
+
+  .content-left,
+  .content-right {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .more-infor-extra {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    .col-4 {
+      flex: 1 1 30%;
+    }
+    .col-5 {
+      flex: 1 1 40%;
+    }
+    .form {
+      border: 1px solid rgb(109, 109, 109);
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .manage-doctor-editor {
+    margin-top: 25px;
+    .md-editor {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      &:focus {
+        border-color: #00b894;
+        box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
+      }
+    }
+  }
 }

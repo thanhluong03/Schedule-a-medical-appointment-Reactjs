@@ -8,7 +8,8 @@ import {CommonUtils} from '../../../utils';
 import { createNewClinic } from '../../../services/userService';
 import {toast} from "react-toastify";
 import { lang } from "moment";
-
+import Lightbox from 'react-image-lightbox';
+import HomeFooter from "../../HomePage/HomeFooter";
 const mdParser = new MarkdownIt();
 class ManageClinic extends Component {
 
@@ -20,6 +21,7 @@ class ManageClinic extends Component {
             imageBase64: '',
             descriptionHTML: '',
             descriptionMarkdown: '',
+            isOpen: false,
         }
     }
 
@@ -39,7 +41,12 @@ class ManageClinic extends Component {
             ...stateCopy
         })
     }
-
+    openPreviewImage = () => {
+        if (!this.state.imageBase64) return;
+        this.setState({
+            isOpen: true
+        })
+    }
     handleEditorChange = ({html, text}) => {
         this.setState({
             descriptionHTML: html,
@@ -76,25 +83,35 @@ class ManageClinic extends Component {
     }
     render() {
         return (
-            <div className="manage-specialty-container">
-                <div className="ms-title">QUAN LY PHONG KHAM</div>
-                <div className="add-new-specialty row">
+            <>
+            <div className="manage-clinic-container">
+                <div className="ms-title">Quản lý cơ sở y tế</div>
+                <div className="add-new-clinic row">
                     <div className="col-6 form-group">
-                        <label>Ten phong kham</label>
+                        <label>Tên cơ sở y tế</label>
                         <input className="form-control" type="text" value={this.state.name}
                         onChange={(event) => this.handeOnchangeInput(event, 'name')}/>
                     </div>
                     <div className="col-6 form-group">
-                        <label>Anh phong kham</label>
-                        <input className="form-control-file" type="file"
-                        onChange={(event) => this.handeOnchangeImage(event)}/>
-                    </div>
-                    <div>
-                        <label>Dia chi phong kham</label>
+                        <label>Địa chỉ cơ sở y tế</label>
                         <input className="form-control" type="text" value={this.state.address}
                         onChange={(event) => this.handeOnchangeInput(event, 'address')}/>
                     </div>
+                    <div className="col-6 form-group">
+                        <label>Ảnh cơ sở y tế</label>
+                        <div className="preview-img-container">
+                            <input id ="previewImg" type="file" hidden
+                                onChange={(event) => this.handeOnchangeImage(event)}/>
+                            <label className="label-upload" htmlFor="previewImg">Tải ảnh <i className="fas fa-upload"></i></label>
+                            <div className="preview-image"
+                                style= {{backgroundImage: `url(${this.state.imageBase64})`}}
+                                onClick={() => this.openPreviewImage()}
+                                >       
+                                </div>
+                            </div>
+                        </div>
                     <div className="col-12">
+                        <label>Mô tả chi tiết</label>
                         <MdEditor
                         style={{height:'300px'}}
                         renderHTML={text => mdParser.render(text)}
@@ -102,13 +119,21 @@ class ManageClinic extends Component {
                         value={this.state.descriptionMarkdown}/>
                     </div>
                     <div className="col-12">
-                        <button className="btn-save-specialty" 
+                        <button className="btn-save-clinic" 
                         onClick={() => this.handleSaveNewClinic()}>
-                            Save
+                            Lưu phòng khám
                         </button>
                     </div>
+                    {this.state.isOpen === true && 
+                        <Lightbox 
+                        mainSrc= {this.state.imageBase64}
+                        onCloseRequest={() => this.setState({isOpen: false})}
+                        />
+                    }
                 </div>
             </div>
+            <HomeFooter/>
+            </>
         );
     }
 

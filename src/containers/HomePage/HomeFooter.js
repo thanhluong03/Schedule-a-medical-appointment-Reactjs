@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import './HomeFooter.scss';
 import { FormattedMessage } from 'react-intl';
 
 
@@ -10,8 +10,18 @@ class HomeFooter extends Component {
     render() {
         return (
             <div className="home-footer">
-                <p>&copy; Thanhluong depzai. Dep trai qua di.
-                    <a target="_blank" href="https://www.youtube.com/watch?v=147SkAVXEqM&list=PLncHg6Kn2JT6E38Z3kit9Hnif1xC_9VqI&index=62"> &#8594; Click here &#8592;</a></p>
+                <div className="footer-info">
+                    <span className="footer-name">Sản phẩm demo. Học hỏi kinh nghiệm </span>
+                </div>
+                <div className="footer-contact">
+                    <div className="footer-title">Liên hệ</div>
+                    <p className="footer-text">
+                        &copy; Thanhluong depzai.
+                        <a className="footer-link" target="_blank" href="https://github.com/thanhluong03">
+                            &#8594; Click here &#8592;
+                        </a>
+                    </p>
+                </div>
             </div>
         );
     }

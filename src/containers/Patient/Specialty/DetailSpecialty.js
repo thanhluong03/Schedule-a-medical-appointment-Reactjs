@@ -10,6 +10,8 @@ import Home from "../../../routes/Home";
 import {getAllDetailSpecialtyById, getAllCodeService} from '../../../services/userService';
 import _, { create } from 'lodash';
 import { LANGUAGES } from "../../../utils";
+import LoadingOverlay from 'react-loading-overlay';
+import HomeFooter from "../../HomePage/HomeFooter";
 class DetailSpecialty extends Component {
 
     constructor(props) {
@@ -17,13 +19,15 @@ class DetailSpecialty extends Component {
         this.state = {
             arrDoctorId: [],
             dataDetailSpecialty: {},
-            listProvince: []
+            listProvince: [],
+            isShowLoading: false
         }
     }
 
     async componentDidMount() {
         if(this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
+            this.setState ({isShowLoading: true})
             let res = await getAllDetailSpecialtyById({
                 id: id,
                 location: 'ALL'
@@ -53,7 +57,8 @@ class DetailSpecialty extends Component {
                 this.setState({
                     dataDetailSpecialty: res.data,
                     arrDoctorId: arrDoctorId,
-                    listProvince: dataProvince ? dataProvince : []
+                    listProvince: dataProvince ? dataProvince : [],
+                    isShowLoading: false
                 })
             }
         }
@@ -69,6 +74,7 @@ class DetailSpecialty extends Component {
         if(this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
             let location = event.target.value;
+            this.setState({isShowLoading: true})
             let res = await getAllDetailSpecialtyById({
                 id: id,
                 location: location
@@ -87,6 +93,7 @@ class DetailSpecialty extends Component {
                 this.setState({
                     dataDetailSpecialty: res.data,
                     arrDoctorId: arrDoctorId,
+                    isShowLoading: false
                 })
             }
         }
@@ -95,8 +102,20 @@ class DetailSpecialty extends Component {
         let {arrDoctorId, dataDetailSpecialty, listProvince} = this.state;
         let{language} = this.props;
         return (
-            <div className="detail-specialty-container">
-                <HomeHeader />
+            <>
+             <HomeHeader />
+
+                
+                {this.state.isShowLoading && (
+                    <div className="loading-overlay-detail">
+                        <div className="loading-content-detail">
+                            <div className="loading-spinner-detail"></div>
+                            <div className="loading-text-detail">Đang tải dữ liệu...</div>
+                        </div>
+                    </div>
+                )}
+
+                <div className="detail-specialty-container">
                 <div className="detail-specialty-body">
                     <div className="description-specialty">
                     {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
@@ -146,6 +165,9 @@ class DetailSpecialty extends Component {
                     }
                 </div>
             </div>
+            {/* </> </LoadingOverlay> */}
+            <HomeFooter/>
+            </>
         );
     }
 

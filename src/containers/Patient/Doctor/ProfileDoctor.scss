@@ -1,27 +1,74 @@
 .profile-doctor-container {
     .intro-doctor {
         display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: linear-gradient(135deg, #fff5f5, #ffffff);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
         .content-left {
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .content-left:hover {
+            transform: scale(1.1);
         }
 
         .content-right {
-            width: calc(100% - 80px);
+            width: calc(100% - 90px);
             display: flex;
             flex-direction: column;
-            padding-left: 10px;
+            padding-left: 20px;
 
             .up {
-                font-weight: 600;
+                font-weight: 700;
+                font-size: 18px;
+                color: #333;
+                padding-left: 5px;
             }
             .down {
                 text-align: justify;
+                font-size: 14px;
+                color: #555;
+                line-height: 1.5;
             }
         }
+    }
+    
+    .view-detail-doctor {
+        margin-top: 10px;
+        
+        a {
+            display: inline-block;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(45deg, #a2deec, #febcc6);
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 3px 6px rgba(255, 117, 140, 0.3);
+        }
+
+        a:hover {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            transform: scale(1.05);
+            box-shadow: 0 5px 10px rgba(255, 117, 140, 0.5);
+        }
+    }
+
+    .price {
+        margin: 10px 0;
     }
 }

@@ -1,18 +1,28 @@
 .doctor-schedule-container {
     border-right: 1px solid #ddd;
     height: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     .all-schedule {
         select {
-            border-bottom: 1px solid #ddd;
-            border-top:  none;
-            border-right: none;
-            border-left: none;
+            border: none;
             outline: none;
             cursor: pointer;
-            padding: 10px 0;
-            color: #337ab7;
+            padding: 12px 15px;
+            color: #4dabf7;
             font-weight: 600;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #4dabf7;
+                color: #fff;
+            }
 
             option {
                 cursor: pointer;
@@ -21,48 +31,82 @@
     }
 
     .all-available-time {
-        .text-calendar {
-            margin: 10px 0;
-            color: #333;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-            span {
-                text-transform: uppercase;
-                margin-left: 5px;
+        .text-calendar {
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+
+            i {
+                color: #4dabf7;
+                margin-right: 5px;
             }
         }
 
         .time-content {
             .time-content-btns {
                 display: flex;
-                gap: 15px;
+                gap: 10px;
                 flex-wrap: wrap;
-            button {
-                padding: 8px 10px;
-                border: none;
-                outline: none;
-                background-color: #fff04b;
-                border-radius: 3px;
-                font-weight: 600;
-                color: #333;
-                &:hover {
-                    background-color: #45c3d3;
-                    color: white;
-                }
-             }
-             .btn-vie {
-                min-width: 120px;
-             }
-             .btn-en {
-                min-width: 170px;
-             }
 
-             .no-schedule {
+                button {
+                    padding: 10px 15px;
+                    border: none;
+                    outline: none;
+                    background: linear-gradient(135deg, #ffb6b8, #ffefea);
+                    border-radius: 6px;
+                    font-weight: 600;
+                    color: #333;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+                    &:hover {
+                        background: linear-gradient(135deg, #45c3d3, #66a6ff);
+                        color: white;
+                        transform: translateY(-2px);
+                    }
+                }
+
+                .btn-vie {
+                    min-width: 120px;
+                }
+                .btn-en {
+                    min-width: 170px;
+                }
+            }
+
+            .book-free {
+                margin-top: 15px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #007bff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+
+                i {
+                    color: #28a745;
+                }
+            }
+
+            .no-schedule {
                 font-style: italic;
                 font-size: 14px;
-             }
-            }
-            .book-free{
-                margin-top: 10px;
+                color: #f66876;
+                text-align: center;
+                padding: 10px;
+                background: #f8d7da;
+                border-radius: 5px;
             }
         }
     }

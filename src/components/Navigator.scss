@@ -2,101 +2,120 @@
 
 .navigator-menu {
     display: flex;
-    margin: 0;
-    padding: 0;
-    &.list-unstyled,
-    .list-unstyled {
-        list-style-type: none;
-    }
+    align-items: center;
+    margin-top: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+
     .menu-group {
+        position: relative;
+        padding: 14px 22px;
+        color: #ffffff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+        font-size: 17px;
+    
         &:hover {
-            cursor: pointer;
-            background-color: darken($colormain, 5);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0px 3px 8px rgba(255, 255, 255, 0.2);
+            color: #ffec1e;
         }
-        .menu-group-name {
-            line-height: 40px;
-            padding: 0 15px;
-            border-right: 1px solid $border;
-            &:first-child {
-                border-left: 1px solid $border;
-            }
-        }
+    
         .menu-list {
-            display: none;
-            background-color: $bg-menu-color;
-            box-shadow: 2px 2px 4px 0 $box-shadow-color;
-            -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
-            color: $text-in-light;
             position: absolute;
-            padding: 0;
+            top: 100%; // Để menu-list bắt đầu ngay dưới menu-group
+            left: 0;
+            background: #2197ff;
+            min-width: 260px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform-origin: top center;
+            z-index: 1001;
+            opacity: 0;
+            max-height: 0;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    
             .menu {
-                width: 100%;
-                padding: 0 15px;
-                height: 35px;
-                line-height: 35px;
-                text-transform: none;
-                &.active {
-                    a{
-                        color: orange;
-                    }
-                    background: #ededed;
+                padding: 14px;
+                color: #ffffff;
+                font-weight: 600;
+                font-size: 17px;
+                transition: all 0.3s ease-in-out;
+    
+                &.active a {
+                    color: #ffec1e;
+                    font-weight: 700;
                 }
+    
+                &:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    transform: scale(1.02);
+                    color: #ffec1e;
+                }
+    
                 .menu-link {
                     text-decoration: none;
-                    color: $text-in-light;
+                    color: inherit;
+                    display: block;
+                    font-weight: 500;
                 }
+    
                 .sub-menu-list {
                     display: none;
-                    background-color: $bg-menu-color;
-                    box-shadow: 2px 2px 4px 0 $box-shadow-color;
-                    -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
                     position: absolute;
                     top: 0;
-                    left: 205px;
-                    padding: 0;
+                    left: 100%;
+                    background: linear-gradient(135deg, #4a4e69, #22223b);
+                    min-width: 240px;
+                    border-radius: 10px;
+                    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+                    animation: fadeIn 0.3s ease-in-out;
+    
                     .sub-menu {
-                        padding: 0 15px;
-                        height: 35px;
-                        line-height: 35px;
-                        white-space: nowrap;
+                        padding: 12px;
+                        color: #ffffff;
+                        transition: all 0.3s ease-in-out;
+    
                         &:hover {
-                            background-color: darken($bg-menu-color, 5);
+                            background: rgba(255, 255, 255, 0.15);
+                            transform: scale(1.05);
                         }
+    
+                        &.active a {
+                            font-weight: 700;
+                            color: #feca57;
+                        }
+    
                         .sub-menu-link {
                             text-decoration: none;
-                            color: $text-in-light;
-                        }
-                        a {
+                            color: inherit;
                             display: block;
                         }
-                        &.active a {
-                            font-weight: 500;
-                            color: $colormain;
-                        }
                     }
-                }
-                &.active span {
-                    font-weight: 500;
-                    color: $colormain;
-                }
-                &:hover {
-                    background-color: darken($bg-menu-color, 3);
-                    .sub-menu-list {
-                        display: block;
-                    }
-                }
-                .icon-right {
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    right: 10px;
                 }
             }
         }
+    
         &:hover {
             .menu-list {
-                display: block;
+                opacity: 1;
+                max-height: 500px; // Độ cao tối đa khi mở rộng
             }
         }
+    }}
+
+// Hiệu ứng xuất hiện mượt
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

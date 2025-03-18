@@ -48,11 +48,11 @@ class TableManagerUser extends Component {
                 <table id="TableManagerUser">
                 <tbody>
                 <tr>
-                        <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Address</th>
-                        <th>Action</th>
+                        <th>Địa chỉ email</th>
+                        <th>Tên</th>
+                        <th>Họ </th>
+                        <th>Địa chỉ </th>
+                        <th>Xử lý</th>
                     </tr>
                         {
                             arrUsers && arrUsers.length > 0 && arrUsers.map((item, index) => {
@@ -73,7 +73,7 @@ class TableManagerUser extends Component {
                         }
                 </tbody>       
              </table>
-             <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+             {/* <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} /> */}
              </React.Fragment>
         );
     }

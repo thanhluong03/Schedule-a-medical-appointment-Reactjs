@@ -7,6 +7,7 @@ import {CommonUtils, CRUD_ACTIONS} from "../../../utils";
 import './UserRedux.scss'
 import 'react-image-lightbox/style.css'
 import Lightbox from 'react-image-lightbox';
+import HomeFooter from '../../HomePage/HomeFooter';
 import TableManagerUser from './TableManagerUser';
 class ProductManage extends Component {
 
@@ -216,57 +217,64 @@ class ProductManage extends Component {
              position,
              role,
              avatar} = this.state;
+                    let { isLoadingGender, isLoadingRole, isLoadingPosition } = this.props;
+        let isLoading = isLoadingGender || isLoadingRole || isLoadingPosition;         
         console.log('thanh luong check prop : ', this.state)
         return (
+            <>
             <div className="user-redux-container" >
+                {isLoading && (
+                    <div className="progress-container">
+                        <div className="progress-bar"></div>
+                    </div>
+                )}
                 <div className="title">
-                    ThanhLuongdepzai
+                    Quản lý người dùng
                 </div>
-                <div>{isGetGender === true ? 'Loading genders' : ''}</div>
+            
                 <div className="user-redux-body">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-12">Them moi</div>
+                        <div className="row input-text">
                             <div className="col-3">
-                                <label>Email</label>
+                                <label>Địa chỉ email</label>
                                 <input type="email" className="form-control" 
                                 value={email}
                                 onChange={(event) => {this.onChangeInput(event, 'email')}}
                                 disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}/>
                             </div>
                             <div className="col-3">
-                                <label>Password</label>
+                                <label>Mật khẩu</label>
                                 <input type="password" className="form-control" 
                                 value={password}
                                 onChange={(event) => {this.onChangeInput(event, 'password')}}
                                 disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}/>
                             </div>
                             <div className="col-3">
-                                <label>First Name</label>
+                                <label>Tên</label>
                                 <input type="text" className="form-control" 
                                 value={firstName}
                                 onChange={(event) => {this.onChangeInput(event, 'firstName')}}/>
                             </div>
                             <div className="col-3">
-                                <label>Last Name</label>
+                                <label>Họ/Tên đệm</label>
                                 <input type="text" className="form-control" 
                                 value={lastName}
                                 onChange={(event) => {this.onChangeInput(event, 'lastName')}}/>
                             </div>
                             <div className="col-3">
-                                <label>PhoneNumber</label>
+                                <label>Số điện thoại</label>
                                 <input type="text" className="form-control" 
                                 value={phoneNumber}
                                 onChange={(event) => {this.onChangeInput(event, 'phoneNumber')}}/>
                             </div>
                             <div className="col-9">
-                                <label>Address</label>
+                                <label>Địa chỉ</label>
                                 <input type="text" className="form-control" 
                                 value={address}
                                 onChange={(event) => {this.onChangeInput(event, 'address')}}/>
                             </div>
                             <div className="col-3">
-                                <label>Gender</label>
+                                <label>Giới tính</label>
                                 <select className="form-control" 
                                 onChange={(event) => {this.onChangeInput(event, 'gender')}}
                                 value={gender}>
@@ -281,7 +289,7 @@ class ProductManage extends Component {
                                 </select>
                             </div>
                             <div className="col-3">
-                                <label>Position</label>
+                                <label>Chức vụ/vị trí</label>
                                 <select className="form-control"
                                 onChange={(event) => {this.onChangeInput(event, 'position')}}
                                 value={position}>
@@ -296,7 +304,7 @@ class ProductManage extends Component {
                                 </select>
                             </div>
                             <div className="col-3">
-                                <label>RoleID</label>
+                                <label>Quyền</label>
                                 <select className="form-control" 
                                 onChange={(event) => {this.onChangeInput(event, 'role')}}
                                 value={role}>
@@ -311,7 +319,7 @@ class ProductManage extends Component {
                                 </select>
                             </div>
                             <div className="col-3">
-                                <label>Image</label>
+                                <label>Ảnh</label>
                                 <div className="preview-img-container">
                                     <input id ="previewImg" type="file" hidden
                                     onChange={(event) => this.handleOnchangeImage(event)}/>
@@ -353,6 +361,8 @@ class ProductManage extends Component {
                 
                 </div>
             </div>
+            <HomeFooter/>
+            </>
         )
     }
 
