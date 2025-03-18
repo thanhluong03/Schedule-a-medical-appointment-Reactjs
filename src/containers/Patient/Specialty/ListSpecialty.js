@@ -32,33 +32,45 @@ class Specialty extends Component {
 
     render() {
         let { dataSpecialty } = this.state;
+        let isLoading = dataSpecialty.length === 0;
+    
         return (
             <>
-            <HomeHeader />
-            <div className="section-share section-specialty">
-                <div className="section-container">
-                <div className="section-header">
-                    <span className="title-section border-title">
-                        <FormattedMessage id="homepage.specialty-popular" />
-                    </span>
-                </div>
-
-                    <div className="specialty-grid">
-                        {dataSpecialty && dataSpecialty.length > 0 &&
-                            dataSpecialty.map((item, index) => {
-                                return (
-                                    <div className="specialty-item" key={index} onClick={() => this.handleViewDetailSpecialty(item)}>
-                                        <div className="bg-image"
-                                            style={{ backgroundImage: `url(${item.image})` }}>
+                <HomeHeader />
+                <div className="section-share section-specialty">
+                    <div className="section-container">
+                        <div className="section-header">
+                            <span className="title-section border-title">
+                                <FormattedMessage id="homepage.specialty-popular" />
+                            </span>
+                        </div>
+    
+                        <div className="specialty-grid-container">
+                            {isLoading ? (
+                                <div className="loading-container">Đang tải...</div>
+                            ) : dataSpecialty.length > 0 ? (
+                                <div className="specialty-grid">
+                                    {dataSpecialty.map((item, index) => (
+                                        <div 
+                                            className="specialty-item" 
+                                            key={index} 
+                                            onClick={() => this.handleViewDetailSpecialty(item)}
+                                        >
+                                            <div className="bg-image"
+                                                style={{ backgroundImage: `url(${item.image})` }}>
+                                            </div>
+                                            <div className="specialty-name">{item.name}</div>
                                         </div>
-                                        <div className="specialty-name">{item.name}</div>
-                                    </div>
-                                );
-                            })}
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="no-data">Không có dữ liệu</div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <HomeFooter/>
+    
+                {!isLoading && <HomeFooter />}
             </>
         );
     }

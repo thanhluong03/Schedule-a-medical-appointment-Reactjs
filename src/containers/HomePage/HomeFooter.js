@@ -11,7 +11,7 @@ class HomeFooter extends Component {
         return (
             <div className="home-footer">
                 <div className="footer-info">
-                    <span className="footer-name">Sản phẩm demo. Học hỏi kinh nghiệm </span>
+                    <span className="footer-name">Sản phẩm học tập</span>
                 </div>
                 <div className="footer-contact">
                     <div className="footer-title">Liên hệ</div>
