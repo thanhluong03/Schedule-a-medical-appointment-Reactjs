@@ -1,4 +1,4 @@
-![image alt]()
+![image alt](https://github.com/thanhluong03/Schedule-a-medical-appointment-Reactjs/blob/caeefe9442f260f2d1acc40c84dfb4a1f65c5ad1/src/assets/images/trangchu.png)
 ![image alt]()
 ![image alt]()
 ![image alt]()
