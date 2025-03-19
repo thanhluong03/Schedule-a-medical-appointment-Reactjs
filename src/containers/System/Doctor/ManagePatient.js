@@ -61,7 +61,7 @@ getDataPatient = async () => {
             patientId: item.patientId,
             email: item.patientData.email,
             timeType: item.timeType,
-            patientName: item.patientData.patientName
+            patientName: item.patientData.firstName
         }
         this.setState({
             isOpenRemedyModal: true,
